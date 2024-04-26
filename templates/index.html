@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Desktop Viewer</title>
+    <link rel="icon" href="/static/images/favicon.png" type="image/png">
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script src="/static/js/app.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000; /* Fondo negro para resaltar la imagen */
+            overflow: hidden; /* Evita desbordamiento y barras de desplazamiento */
+        }
+        img#desktop {
+            user-select: none;        /* Evita la selección de texto y otros elementos dentro de la imagen */
+            pointer-events: auto;     /* Permite que la imagen reciba eventos de puntero */
+            display: block;           /* Elimina cualquier espacio extra alrededor de la imagen */
+            max-width: 100%;          /* Máximo ancho del viewport */
+            max-height: 100%;         /* Máximo alto del viewport */
+            width: auto;              /* Se ajusta automáticamente al ancho necesario para mantener la proporción */
+            height: auto;             /* Se ajusta automáticamente a la altura necesaria para mantener la proporción */
+            object-fit: contain;      /* Asegura que la imagen se ajusta sin perder proporciones */
+            border: 0;                /* Elimina cualquier borde predeterminado que podría tener la imagen */
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const desktopImg = document.getElementById('desktop');
+
+            desktopImg.addEventListener('mousedown', function(event) {
+                event.preventDefault(); // Evita el comportamiento de arrastrar la imagen.
+                console.log('Mouse down at', event.clientX, event.clientY);
+                // Puedes emitir este evento al servidor aquí si es necesario.
+            });
+
+            desktopImg.addEventListener('mousemove', function(event) {
+                // Manejar movimiento del ratón si es necesario.
+            });
+
+            desktopImg.addEventListener('mouseup', function(event) {
+                // Finalizar cualquier acción iniciada en mousedown.
+            });
+        });
+    </script>
+</head>
+<body>
+    <img id="desktop" src="" alt="Remote Desktop Image">
+</body>
+</html>

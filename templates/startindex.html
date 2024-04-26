@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar sesión</title>
+<link rel="stylesheet" href="/static/css/styles.css">
+<link rel="icon" type="image/png" href="/static/images/favicon.png"> <!-- Favicon añadido aquí -->
+</head>
+<body>
+  <div class="login-container">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+    </div>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="user" required>
+      <input type="password" id="password" placeholder="password" required>
+      <button type="submit" class="button">Connect</button>
+      <button type="button" id="logoutButton" class="button">Log out all sessions</button>
+    </form>
+    <p id="errorMsg"></p>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').onsubmit = function(event) {
+      event.preventDefault();
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+      }).then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          document.getElementById('errorMsg').textContent = data.error;
+        } else {
+          // Abrir nueva pestaña para la ruta /config
+          //window.open(data.redirect_show, '_blank');
+          //window.open(data.redirect_config, '_blank');
+          //window.open(data.redirect_show, '_blank'); // Abrir /config en una nueva pestaña
+          //window.location.href = data.redirect_config; // Cargar /show en la pestaña actual
+          window.location.href = data.redirect_show; // Cargar /show en la pestaña actual
+
+          document.getElementById('loginForm').reset();
+        }
+      }).catch(error => {
+        console.error('Error durante el login:', error);
+        document.getElementById('errorMsg').textContent = 'Error de conexión con el servidor.';
+      });
+    };
+
+    document.getElementById('logoutButton').onclick = function() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      fetch('/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+      }).then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          console.error('Error:', data.error);
+          document.getElementById('errorMsg').textContent = data.error;
+        } else {
+          alert(data.message);  // Mostrar mensaje de sesión cerrada exitosamente
+          document.getElementById('loginForm').reset();
+          window.location.href = '/'; // Redirigir a la página de inicio de sesión
+        }
+      }).catch(error => {
+        console.error('Error cerrando la sesión:', error);
+        document.getElementById('errorMsg').textContent = 'Error de conexión con el servidor.';
+      });
+    };
+  </script>
+</body>
+</html>

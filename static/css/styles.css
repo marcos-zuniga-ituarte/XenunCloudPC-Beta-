@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  text-align: center;
+  padding: 20px;
+  background: #222;
+  border-radius: 8px;
+  width: 100%;        /* Hace que ocupe el ancho disponible pero respetando los máximos y mínimos */
+  max-width: 400px;   /* Un ancho máximo para que no se vea demasiado grande en pantallas amplias */
+  box-sizing: border-box; /* Asegura que el padding no añada más ancho al ya definido */
+}
+
+input[type="text"], input[type="password"] {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background: #333;
+  color: white;
+}
+
+.button {
+  width: 93%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FC8C0C;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px; /* Asegura algo de espacio encima del botón */
+}
+
+.button:hover {
+  background-color: #FC8C0C;
+}
+
+.logo img {
+  max-width: 100%; /* Esto asegura que el logo no sea más ancho que el contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+  margin-bottom: 20px; /* Espacio debajo del logo */
+}
+
+.logo {
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente (opcional) */
+}
+

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Configuración de Frames</title>
+        <link rel="icon" href="/static/images/favicon.png" type="image/png"> <!-- Favicon añadido aquí -->
+    </head>
+    <body>
+        <h1>Configuración de Frames</h1>
+        <form method="post">
+            Frame Quality (entero): <input type="text" name="frameQuality" value="{{ frame_quality }}"><br>
+            Frame Update (flotante, formato legible): <input type="text" name="updateRate" value="{{ frame_update }}"><br>
+            <input type="submit" value="Guardar">
+        </form>
+    </body>
+    </html>
