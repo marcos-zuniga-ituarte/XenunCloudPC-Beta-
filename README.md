@@ -83,3 +83,5 @@ For more information see the LICENSE archive.
 While **Xenun** facilitates remote desktop access, it does not collect or transmit user data to its developers. Users are solely responsible for the security of their own computer systems and the protection of their data when using **Xenun**. Users should ensure that their network and access settings are securely configured, especially when accessing over public or unsecured networks.
 
 In no event will the developers of **Xenun** be liable for any unauthorized access to, alteration of, or the deletion, destruction, damage, or loss of, any data, computer systems, or networks used in connection with **XenunCloudPC**. Users are encouraged to implement robust security measures and seek professional advice appropriate for their circumstances.
+
+This project was created by Marcos Zúñiga Ituarte.
